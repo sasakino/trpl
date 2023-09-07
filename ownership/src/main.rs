@@ -1,33 +1,30 @@
 fn main() {
-    let s1 = String::from("hello");
+    let my_string = String::from("hello world");
 
-    let len = calculate_length(&s1);
+    let word = first_word(&my_string[..]);
 
-    println!("The length of '{}' is {}.", s1, len);
+    println!("{}", word);
 
-    let mut s = String::from("hello");
+    let my_string_literal = "hello world";
 
-    change(&mut s);
+    let word = first_word(&my_string_literal[..]);
 
-    println!("{}", s);
+    println!("{}", word);
 
-    let reference_to_nothing = dangle();
+    let word = first_word(my_string_literal);
 
-    println!("{}", reference_to_nothing)
+    println!("{}", word);
+
 }
 
-fn calculate_length(s: &String) -> usize {
-    s.len()
-}
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
 
-fn change(some_string: &mut String) {
-    some_string.push_str(", world");
-}
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
 
-// fn dangle() -> &String {
-fn dangle() -> String {
-    let s = String::from("hello");
-
-    // &s
-    s
+    &s[..]
 }
