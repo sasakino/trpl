@@ -1,39 +1,55 @@
-#[derive(Debug)]
-enum IpAddr {
-    V4(u8, u8, u8, u8),
-    V6(String),
-}
+fn main() {
+    let coin1 = Coin::Penny;
+    let coin2 = Coin::Quarter(UsState::Alaska);
+    value_in_cents(coin1);
+    value_in_cents(coin2);
 
-enum Message {
-    Quit,
-    Move { x: i32, y: i32 },
-    Write(String),
-    ChangeColor(i32, i32, i32),
-}
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+    println!("{:?} {:?} {:?}", five, six, none);
 
-impl Message {
-    fn call(&self) {
+    let some_u8_value = 0u8;
+    match some_u8_value {
+        1 => println!("one"),
+        3 => print!("three"),
+        5 => println!("five"),
+        7 => println!("seven"),
+        _ => (),
     }
 }
 
-fn main() {
-    let home = IpAddr::V4(127, 0, 0, 1);
+#[derive(Debug)]
+enum UsState {
+    Alabama,
+    Alaska,
+}
 
-    let loopback = IpAddr::V6(String::from("::1"));
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
 
-    println!("home: {:?}, loopback: {:?}", home, loopback);
+fn value_in_cents(coin: Coin) -> u32 {
+    match coin {
+        Coin::Penny => {
+            println!("Lucky Penny!");
+            1
+        },
+        Coin::Nickel => 5, // 5 cents
+        Coin::Dime => 10, // 10 cents
+        Coin::Quarter(state) => {
+            println!("State quarter from {:?}!", state);
+            25
+        }
+    }
+}
 
-    let m = Message::Write(String::from("hello"));
-
-    m.call();
-
-    let some_number = Some(5);
-    let some_string = Some("a string");
-
-    let absent_number: Option<i32> = None;
-
-    let x: i8 = 5;
-    let y: Option<i8> = Some(5);
-
-    // let sum = x + y;
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
 }
