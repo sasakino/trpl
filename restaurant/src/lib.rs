@@ -1,10 +1,9 @@
-use std::fmt::Result;
-use std::io::Result as IoResult;
+mod front_of_house;
 
-fn function1() -> Result {
-    Ok(())
-}
+pub use crate::front_of_house::hosting;
 
-fn function2() -> IoResult<()> {
-    Ok(())
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
 }
