@@ -1,20 +1,47 @@
-enum SpreadSheetCell {
-    Int(i32),
-    Float(f64),
-    Text(String),
-}
-
 fn main() {
-    let row = vec![
-        SpreadSheetCell::Int(3),
-        SpreadSheetCell::Float(10.12),
-        SpreadSheetCell::Text(String::from("blue")),
-    ];
+    let mut s = String::new();
 
-    match row.get(1) {
-        Some(SpreadSheetCell::Int(val)) => println!("Int: {}", val),
-        Some(SpreadSheetCell::Float(val)) => println!("Float: {}", val),
-        Some(SpreadSheetCell::Text(val)) => println!("Text: {}", val),
-        None => println!("None"),
+    let data = "initial contents";
+
+    let s = data.to_string();
+
+    let s = "initial contents".to_string();
+
+    let s = String::from("inital contents");
+
+    let mut s = String::from("foo");
+
+    let mut s1 = String::from("foo");
+    let s2 = "bar";
+    s1.push_str(s2);
+    println!("s2 is {}", s2);
+
+    let mut s = String::from("lo");
+    s.push('l');
+
+    let s1 = String::from("Hello, ");
+    let s2 = String::from("world!");
+    let s3 = s1 + &s2;
+
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let s = s1 + "-" + &s2 + "-" + &s3;
+
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let s = format!("{}-{}-{}", s1, s2, s3);
+
+    let s1 = String::from("hello");
+
+    let hello = "Здравствуйте";
+
+    let s = &hello[0..4];
+
+    for c in "नमस्ते".chars() {
+        println!("{}", c);
     }
 }
