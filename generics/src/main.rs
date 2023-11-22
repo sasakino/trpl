@@ -1,14 +1,28 @@
-enum Option_i32 {
-    Some(i32),
-    None,
+use std::fmt::Display;
+
+struct Pair<T> {
+    x: T,
+    y: T,
 }
 
-enum Option_f64 {
-    Some(f64),
-    None,
+impl<T> Pair<T> {
+    fn new(x: T, y: T) -> Self {
+        Self { x, y }
+    }
+}
+
+impl<T: Display + PartialOrd> Pair<T> {
+    fn cmd_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
 }
 
 fn main() {
-    let integer = Option_i32::Some(5);
-    let float = Option_f64::Some(5.0);
+    let p = Pair::new(1, 2);
+
+    p.cmd_display();
 }
