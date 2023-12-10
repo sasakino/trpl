@@ -43,4 +43,8 @@ fn main() {
 
     let point = (3, 5);
     print_coordinate(&point);
+
+    if let x = 5 {
+        println!("{}", x);
+    };
 }
